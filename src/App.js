@@ -1,23 +1,62 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const calculateTimeLeft = () => {
+    // var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+
+    // let year = new Date().getFullYear();
+    const difference = +new Date('April 12, 2021 23:00:00') - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  // const [year] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+  });
+
+  const timerComponents = [];
+
+  Object.keys(timeLeft).forEach(interval => {
+    // console.log('timeLeft', timeLeft);
+    if (!timeLeft[interval]) {
+      return;
+    }
+    if (interval !== 'seconds') {
+      timerComponents.push(<span>{timeLeft[interval]} : </span>);
+    } else {
+      timerComponents.push(<span>{timeLeft[interval]}</span>);
+    }
+    // console.log(timerComponents);
+  });
+
+  // console.log(timerComponents);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className='headerText'>
+        <div className='flex'>
+          <p className='actualHeaderText'>Gyms open in...</p>
+        </div>
+      </div>
+      <div className='timeCounter'>
+        <p>{timeLeft.days > 0 ? timerComponents : 'OPEN!'}</p>
+      </div>
     </div>
   );
 }
