@@ -12,7 +12,7 @@ p {
   grid-template-rows: 1fr 2fr;
   align-items: space-around;
   height: 100vh;
-  max-width: 450px;
+  max-width: 520px;
   margin: 0 auto;
 }
 
@@ -32,7 +32,7 @@ p {
 
 .timeCounter p span {
   text-align: center;
-  font-size: calc(34px + 2vmin);
+  font-size: calc(24px + 2vmin);
   font-family: 'Orbitron', sans-serif;
   align-items: center;
   justify-content: center;
