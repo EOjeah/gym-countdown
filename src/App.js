@@ -65,16 +65,11 @@ function App() {
 
   // console.log(timerComponents);
   return (
-    <div className='container'>
-      <div className='headerText'>
-        <div className='flex'>
-          <p className='actualHeaderText'>Gyms open in...</p>
-        </div>
-      </div>
-      <div className='timeCounter'>
-        <p>{timeLeft.days > 0 ? timerComponents : 'OPEN!'}</p>
-      </div>
-    </div>
+    <p>
+      {timeLeft.days > 0 && timeLeft.hours > 0 && timeLeft.minutes > 0
+        ? timerComponents
+        : 'OPEN!'}
+    </p>
   );
 }
 
