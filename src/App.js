@@ -66,7 +66,7 @@ function App() {
   // console.log(timerComponents);
   return (
     <p>
-      {timeLeft.days > 0 && timeLeft.hours > 0 && timeLeft.minutes > 0
+      {timeLeft.days + timeLeft.hours + timeLeft.minutes > 0
         ? timerComponents
         : 'OPEN!'}
     </p>
